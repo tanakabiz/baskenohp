@@ -5,17 +5,15 @@ import { useSiteData } from '../contexts/SiteContext';
 export default function AdminButton() {
   const { isAdmin, login, logout } = useSiteData();
   const [isOpen, setIsOpen] = useState(false);
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (login(password)) {
+    setIsLoggingIn(true);
+    const success = await login();
+    setIsLoggingIn(false);
+    if (success) {
       setIsOpen(false);
-      setPassword('');
-      setError('');
-    } else {
-      setError('パスワードが間違っています。');
     }
   };
 
@@ -49,21 +47,16 @@ export default function AdminButton() {
             ) : (
               <form onSubmit={handleLogin} className="space-y-4">
                 <div>
-                  <label className="block font-sans text-sm font-bold text-zinc-700 mb-2">パスワード</label>
-                  <input 
-                    type="password" 
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full border-2 border-zinc-300 p-3 font-sans focus:border-[#E60012] focus:outline-none"
-                    placeholder="Password"
-                  />
-                  {error && <p className="text-[#E60012] text-sm mt-2 font-bold">{error}</p>}
+                  <p className="font-sans font-bold text-zinc-700 mb-4 text-sm leading-relaxed">
+                    管理者権限を持つGoogleアカウントでログインしてください。
+                  </p>
                 </div>
                 <button 
+                  disabled={isLoggingIn}
                   type="submit"
-                  className="w-full bg-[#E60012] text-white py-3 font-display font-black tracking-widest hover:bg-red-700 transition-colors skew-x-[-5deg]"
+                  className="w-full bg-[#E60012] text-white py-3 font-display font-black tracking-widest hover:bg-red-700 transition-colors skew-x-[-5deg] disabled:opacity-50"
                 >
-                  <p className="skew-x-[5deg]">LOGIN</p>
+                  <p className="skew-x-[5deg]">{isLoggingIn ? 'LOGGING IN...' : 'GOOGLE LOGIN'}</p>
                 </button>
               </form>
             )}

@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "SiteSettings": {
+      "title": "Site Settings",
+      "description": "General settings for the site including hero and team intro.",
+      "type": "object",
+      "properties": {
+        "hero": {
+          "type": "object",
+          "properties": {
+            "catchphrase1": { "type": "string" },
+            "catchphrase2": { "type": "string" },
+            "subtext": { "type": "string" },
+            "description": { "type": "string" },
+            "image": { "type": "string" }
+          }
+        },
+        "teamIntro": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "description1": { "type": "string" },
+            "description2": { "type": "string" },
+            "image": { "type": "string" }
+          }
+        }
+      }
+    },
+    "Member": {
+      "title": "Member",
+      "description": "Team member details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "name": { "type": "string" },
+        "alias": { "type": "string" },
+        "position": { "type": "string" },
+        "specialMove": { "type": "string" },
+        "quote": { "type": "string" },
+        "instagram": { "type": "string" },
+        "image": { "type": "string" },
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "Schedule": {
+      "title": "Schedule",
+      "description": "Team schedule",
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "date": { "type": "string" },
+        "location": { "type": "string" },
+        "isRecruiting": { "type": "boolean" },
+        "description": { "type": "string" }
+      }
+    },
+    "Achievement": {
+      "title": "Achievement",
+      "description": "Team achievement",
+      "type": "object",
+      "properties": {
+        "id": { "type": "number" },
+        "year": { "type": "string" },
+        "event": { "type": "string" },
+        "result": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "site/settings": {
+      "schema": { "$ref": "#/entities/SiteSettings" },
+      "description": "Global config"
+    },
+    "members/{memberId}": {
+      "schema": { "$ref": "#/entities/Member" },
+      "description": "Team members"
+    },
+    "schedules/{scheduleId}": {
+      "schema": { "$ref": "#/entities/Schedule" },
+      "description": "Team schedules"
+    },
+    "achievements/{achievementId}": {
+      "schema": { "$ref": "#/entities/Achievement" },
+      "description": "Team achievements"
+    }
+  }
+}

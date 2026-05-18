@@ -14,13 +14,13 @@ export default function Hero() {
         <div className="absolute inset-0 bg-speed-lines opacity-10" />
         <div className="absolute top-0 right-0 w-[50vw] h-[100vh] bg-[#E60012] clip-slant-reverse opacity-5" />
         {/* Dynamic background image */}
-        <div className="absolute inset-0 flex items-center justify-end overflow-hidden lg:pl-[20%]">
-          <div className="relative w-[150%] h-[150%] sm:w-full sm:h-full flex items-center justify-center opacity-80 mix-blend-multiply flex-shrink-0 origin-center translate-x-[15%] sm:translate-x-0">
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+          <div className="relative w-full h-full flex items-center justify-center opacity-80 mix-blend-multiply flex-shrink-0">
              <EditableImage 
                src={siteData.hero.image} 
                onSave={(base64) => updateSiteData({ hero: { ...siteData.hero, image: base64 } })}
                alt="Shammgod Team" 
-               className="w-full h-full object-cover object-center max-w-none" 
+               className="w-full h-full object-cover object-[70%_center] lg:object-center" 
              />
              
              {/* Instagram Icon Overlay on the image */}

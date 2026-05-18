@@ -71,10 +71,20 @@ export default function EditableImage({
     return <img src={src} alt="" className={className} onError={handleError} />;
   }
 
+  // Extract object-fit / object-position classes to apply to inner img
+  const matchImgClasses = className.match(/object-\S+/g) || [];
+  const imgClasses = `w-full h-full object-cover group-hover:opacity-60 transition-all ${matchImgClasses.join(' ')}`;
+
   return (
-    <label className={`relative group cursor-pointer inline-block ${className}`} onClick={(e) => e.stopPropagation()}>
+    <div 
+      className={`relative group cursor-pointer inline-block ${className}`} 
+      onClick={(e) => {
+        e.stopPropagation();
+        fileInputRef.current?.click();
+      }}
+    >
       {!hasError && src ? (
-        <img src={src} alt="" className={`w-full h-full object-cover group-hover:opacity-60 transition-all`} onError={handleError} />
+        <img src={src} alt="" className={imgClasses} onError={handleError} />
       ) : (
         <div className={`w-full h-full bg-zinc-200 flex items-center justify-center text-zinc-400 group-hover:opacity-60 transition-all`}>
           <ImageIcon size={40} />
@@ -86,6 +96,6 @@ export default function EditableImage({
         </div>
       </div>
       <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleFileChange} />
-    </label>
+    </div>
   );
 }

@@ -28,12 +28,12 @@ export default function TeamIntro() {
             <div className="absolute inset-0 bg-[#E60012] translate-x-4 translate-y-4 shadow-xl z-0" />
             <div className="absolute inset-0 border-4 border-[#1A1A1A] translate-x-2 translate-y-2 z-10 pointer-events-none" />
             
-            <div className="relative z-20 aspect-[3/4] bg-[#1A1A1A] overflow-hidden group">
+            <div className="relative z-20 aspect-square md:aspect-[3/4] bg-[#1A1A1A] overflow-hidden group">
                <EditableImage 
                  src={siteData.teamIntro.image} 
                  onSave={(base64) => updateSiteData({ teamIntro: { ...siteData.teamIntro, image: base64 } })}
                  alt="Team Shammgod" 
-                 className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" 
+                 className="w-full h-full object-cover object-center md:object-top group-hover:scale-105 transition-transform duration-700" 
                />
                
                <a 
