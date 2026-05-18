@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=RocknRoll+One&family=Yuji+Syuku&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "RocknRoll One", "Noto Sans JP", sans-serif;
+  --font-brush: "Yuji Syuku", "Noto Sans JP", serif;
+
+  --color-shammgod-red: #E60012;
+  --color-shammgod-dark: #1A1A1A;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-zinc-900 antialiased overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .text-stroke-1 {
+    -webkit-text-stroke: 1px black;
+  }
+  .text-stroke-2 {
+    -webkit-text-stroke: 2px black;
+  }
+  .bg-speed-lines {
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 10px,
+      rgba(0, 0, 0, 0.03) 10px,
+      rgba(0, 0, 0, 0.03) 11px
+    );
+  }
+  .bg-flame-gradient {
+    background: linear-gradient(135deg, #FF6B00 0%, #E60012 100%);
+  }
+  .text-flame {
+    background: linear-gradient(to bottom, #FFD700, #FF8C00, #E60012);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .clip-slant {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2vw), 0 100%);
+  }
+  .clip-slant-reverse {
+    clip-path: polygon(0 0, 100% 2vw, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes animeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes flameFlicker {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+.animate-flame {
+  animation: flameFlicker 3s infinite ease-in-out;
+}
+

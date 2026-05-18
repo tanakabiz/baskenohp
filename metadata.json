@@ -1,0 +1,6 @@
+{
+  "name": "Shammgod (シャムゴット)",
+  "description": "札幌の社会人バスケットボールチーム「シャムゴット」の公式サイト",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
