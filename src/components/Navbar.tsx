@@ -30,7 +30,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 group">
-          <img src="/syam.png" alt="SHAMMGOD" className="h-16 md:h-20 w-auto object-contain" />
+          <img src="/syam.png" alt="" className="h-16 md:h-20 w-auto object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
         </a>
 
         {/* Desktop Nav */}

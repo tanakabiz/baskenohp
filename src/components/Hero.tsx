@@ -44,20 +44,6 @@ export default function Hero() {
         <div className="max-w-3xl">
           
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
-            className="mb-6 flex flex-col gap-2"
-          >
-            <div className="inline-block bg-[#1A1A1A] text-white px-4 py-1.5 font-display text-sm tracking-widest skew-x-[-10deg] w-max">
-              <span className="skew-x-[10deg] block">札幌社会人バスケットボールチーム</span>
-            </div>
-            <div className="inline-block bg-[#E60012] text-white px-4 py-1.5 font-display text-sm tracking-widest skew-x-[-10deg] w-max">
-              <span className="skew-x-[10deg] block animate-flame uppercase">Shammgod</span>
-            </div>
-          </motion.div>
-
-          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, type: "spring" }}

@@ -107,5 +107,10 @@ export const defaultSiteData = {
       isRecruiting: false,
       description: '練習試合'
     }
+  ],
+  achievements: [
+    { id: 1, year: '2023', event: '札幌市民大会', result: '3回戦進出' },
+    { id: 2, year: '2022', event: '札幌市民大会', result: '2回戦進出' },
+    { id: 3, year: '2021', event: 'チーム結成', result: '活動開始' },
   ]
 };

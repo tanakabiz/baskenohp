@@ -13,6 +13,9 @@ export type SiteContextType = {
   updateSchedule: (scheduleId: number, newData: any) => void;
   addSchedule: (schedule: any) => void;
   removeSchedule: (scheduleId: number) => void;
+  updateAchievement: (achievementId: number, newData: any) => void;
+  addAchievement: (achievement: any) => void;
+  removeAchievement: (achievementId: number) => void;
 };
 
 const SiteContext = createContext<SiteContextType | undefined>(undefined);
@@ -36,7 +39,12 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    localStorage.setItem('shammgod_site_data', JSON.stringify(siteData));
+    try {
+      localStorage.setItem('shammgod_site_data', JSON.stringify(siteData));
+    } catch(e) {
+      console.error("Failed to save site data to localStorage", e);
+      alert("データの保存に失敗しました。画像のサイズが大きい可能性があります。");
+    }
   }, [siteData]);
 
   const login = (password: string) => {
@@ -95,6 +103,27 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
+  const updateAchievement = (achievementId: number, newData: any) => {
+    setSiteData((prev: any) => ({
+      ...prev,
+      achievements: prev.achievements.map((a: any) => a.id === achievementId ? { ...a, ...newData } : a)
+    }));
+  };
+
+  const addAchievement = (achievement: any) => {
+    setSiteData((prev: any) => ({
+      ...prev,
+      achievements: [{ ...achievement, id: Date.now() }, ...(prev.achievements || [])].sort((a, b) => parseInt(b.year) - parseInt(a.year))
+    }));
+  };
+
+  const removeAchievement = (achievementId: number) => {
+    setSiteData((prev: any) => ({
+      ...prev,
+      achievements: prev.achievements.filter((a: any) => a.id !== achievementId)
+    }));
+  };
+
   return (
     <SiteContext.Provider value={{ 
       isAdmin, 
@@ -107,7 +136,10 @@ export function SiteProvider({ children }: { children: React.ReactNode }) {
       removeMember,
       updateSchedule,
       addSchedule,
-      removeSchedule
+      removeSchedule,
+      updateAchievement,
+      addAchievement,
+      removeAchievement
     }}>
       {children}
     </SiteContext.Provider>
