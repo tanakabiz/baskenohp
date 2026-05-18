@@ -50,6 +50,11 @@ export default function AdminButton() {
                   <p className="font-sans font-bold text-zinc-700 mb-4 text-sm leading-relaxed">
                     管理者権限を持つGoogleアカウントでログインしてください。
                   </p>
+                  {window.self !== window.top && (
+                    <p className="text-[#E60012] text-xs font-bold mb-4">
+                      ※プレビュー画面ではポップアップがブロックされる場合があります。ログインできない場合は、右上のボタンから別タブで開いてください。
+                    </p>
+                  )}
                 </div>
                 <button 
                   disabled={isLoggingIn}
