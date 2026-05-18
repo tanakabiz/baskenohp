@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSiteData } from '../contexts/SiteContext';
 import { Edit3 } from 'lucide-react';
 
@@ -46,7 +46,7 @@ export default function EditableText({
 
   if (isEditing) {
     return (
-      <div className={`relative ${className} bg-yellow-50/90 text-black border-2 border-dashed border-[#E60012] p-1 min-w-[100px] z-50`} onClick={(e) => e.stopPropagation()}>
+      <span className={`block relative ${className} bg-yellow-50/90 text-black border-2 border-dashed border-[#E60012] p-1 min-w-[100px] z-50`} onClick={(e) => e.stopPropagation()}>
         {multiline ? (
           <textarea 
             value={text} 
@@ -63,11 +63,11 @@ export default function EditableText({
             autoFocus
           />
         )}
-        <div className="absolute -bottom-8 right-0 flex gap-2 w-max shadow-md">
+        <span className="absolute -bottom-8 right-0 flex gap-2 w-max shadow-md">
            <button onClick={(e) => { e.stopPropagation(); setIsEditing(false); }} className="bg-zinc-800 text-white text-xs px-3 py-1.5 font-sans font-bold hover:bg-black">キャンセル</button>
            <button onClick={handleSave} className="bg-[#E60012] text-white text-xs px-3 py-1.5 font-sans font-bold hover:bg-red-700">保存</button>
-        </div>
-      </div>
+        </span>
+      </span>
     );
   }
 
@@ -81,9 +81,9 @@ export default function EditableText({
       }}
     >
       {value.split('\n').map((line, i) => <span key={i}>{line}{i !== value.split('\n').length - 1 && <br/>}</span>)}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-[#E60012] text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-lg">
+      <span className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 bg-[#E60012] text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-lg">
         <Edit3 size={14} />
-      </div>
+      </span>
     </Tag>
   );
 }

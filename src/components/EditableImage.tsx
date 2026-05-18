@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useSiteData } from '../contexts/SiteContext';
-import { ImagePlus, Image as ImageIcon } from 'lucide-react';
+import { ImagePlus } from 'lucide-react';
 
 interface EditableImageProps {
   src: string;
@@ -66,7 +66,7 @@ export default function EditableImage({
 
   if (!isAdmin) {
     if (hasError || !src) {
-      return <div className={`bg-zinc-100 flex items-center justify-center ${className}`}></div>;
+      return <div className={`bg-transparent ${className}`}></div>;
     }
     return <img src={src} alt="" className={className} onError={handleError} />;
   }
@@ -86,8 +86,7 @@ export default function EditableImage({
       {!hasError && src ? (
         <img src={src} alt="" className={imgClasses} onError={handleError} />
       ) : (
-        <div className={`w-full h-full bg-zinc-200 flex items-center justify-center text-zinc-400 group-hover:opacity-60 transition-all`}>
-          <ImageIcon size={40} />
+        <div className={`w-full h-full bg-black/5 flex items-center justify-center text-zinc-400 group-hover:opacity-60 transition-all`}>
         </div>
       )}
       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity ring-4 ring-inset ring-[#E60012]">
